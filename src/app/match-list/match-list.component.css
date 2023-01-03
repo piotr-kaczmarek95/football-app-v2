@@ -1,0 +1,32 @@
+.container {
+  width: 40%;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-preview {
+  font-family: sans-serif;
+}
+
+.fade-in {
+  animation: fade-in 0.5s;
+}
+
+@keyframes fade-in {
+
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

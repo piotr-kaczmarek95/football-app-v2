@@ -1,0 +1,28 @@
+<div class="container">
+  <div>
+    <form #teamNameForm="ngForm">
+      <input type="text" placeholder="Enter a team name..." id="teamName" name="teamName" minlength="4" required ngModel (input)="clearSuggestions()" class="team-input" #teamName>
+      <button type="button" (click)="searchTeam()" [disabled]="!teamNameForm.valid" #searchButton>
+        Search
+      </button>
+    </form>
+  </div>
+  <div #searchResults class="search-results-container">
+    <div *ngIf="matchingTeams.length" class="search-results">
+      <div *ngFor="let team of matchingTeams" (click)="getDataForSingleTeam(team.id)">
+        {{ team.name }}
+      </div>
+    </div>
+    <div *ngIf="showNoMatchingTeamsAlert" class="search-results">
+      <div>
+        No matching results.
+      </div>
+    </div>
+  </div>
+  <div class="sorting-options">
+    <div>Sort by:</div>
+    <div (click)="sortMatches()">date <div class="arrow" [ngClass]="{'arrow-up': sortOrder === 'desc', 'arrow-down': sortOrder === 'asc'}"></div>
+    </div>
+  </div>
+  <app-alert *ngIf="showSearchErrorAlert" [message]="searchErrorText" [title]="'Error'" (closeClicked)="onAlertCloseClicked()"></app-alert>
+</div>

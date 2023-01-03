@@ -1,0 +1,46 @@
+.container {
+  position: fixed;
+  left: 50vw;
+  top: 50vh;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  height: 20vh;
+  width: 20vw;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  padding: 1vh 1vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.title {
+  font-weight: bold;
+  text-align: left;
+}
+
+.message {
+  padding: 5px;
+}
+
+button {
+  padding: 12px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: grey;
+  color: white;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+  background-color: white;
+  opacity: 0.3;
+}

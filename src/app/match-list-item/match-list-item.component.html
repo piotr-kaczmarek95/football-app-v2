@@ -1,0 +1,29 @@
+<div class="container" [@matchContainerState]="matchContainerState">
+  <div class="header">
+    {{ match[followedTeamSide].name }}
+    <div class="buttons">
+      <button type="button" (click)="deleteMatch()">x</button>
+    </div>
+  </div>
+  <div class="content">
+    <div class="crest-big">
+      <img [src]="match[followedTeamSide].crest" alt="" />
+    </div>
+    <div class="match-details">
+      <div class="match-sides">
+        <span class="team-name">vs {{ match[opponentTeamSide].name }}</span
+        ><img [src]="match[opponentTeamSide].crest" />
+      </div>
+      <div class="competition-details">
+        {{ match.competition.name }}
+        <!-- <img [src]="match.competition.emblem" alt="" /> -->
+        <span style="margin-left: 5px">matchday {{ match.matchday }}</span>
+      </div>
+      <div class="match-date">
+        <div>{{ matchDateFormatted.date }}</div>
+        <div>{{ matchDateFormatted.time }}</div>
+      </div>
+      <div>side: {{ followedTeamSide === "awayTeam" ? "away" : "home" }}</div>
+    </div>
+  </div>
+</div>

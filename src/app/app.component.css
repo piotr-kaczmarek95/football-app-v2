@@ -1,0 +1,15 @@
+*{
+  font-family: sans-serif;
+}
+
+.wrapper{
+  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #eee;
+  padding: 5px;
+}
+
+.app-title{
+  margin-bottom: 5px;
+}
