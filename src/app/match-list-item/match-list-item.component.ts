@@ -19,11 +19,11 @@ export class MatchListItemComponent implements OnInit {
     this.opponentTeamSide = this.followedTeamSide === 'awayTeam' ? 'homeTeam' : 'awayTeam'
     this.matchDateFormatted =  this.formatMatchDate(this.match.utcDate)
 
-    if (this.animatedAppearance) this.matchContainerState = 'visible'
+    if (this.animatedEntrance) this.matchContainerState = 'visible'
   }
 
   @Input() match !: NextMatch
-  @Input() animatedAppearance !: boolean
+  @Input() animatedEntrance !: boolean
 
   followedTeamSide !: 'awayTeam' | 'homeTeam'
   opponentTeamSide !: 'awayTeam' | 'homeTeam'

@@ -7,12 +7,12 @@
   </div>
   <div class="content">
     <div class="crest-big">
-      <img [src]="match[followedTeamSide].crest" alt="" />
+      <img [src]="match[followedTeamSide].crest" alt="" draggable="false"/>
     </div>
     <div class="match-details">
       <div class="match-sides">
         <span class="team-name">vs {{ match[opponentTeamSide].name }}</span
-        ><img [src]="match[opponentTeamSide].crest" />
+        ><img [src]="match[opponentTeamSide].crest" draggable="false"/>
       </div>
       <div class="competition-details">
         {{ match.competition.name }}

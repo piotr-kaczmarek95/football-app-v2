@@ -52,18 +52,18 @@ export class MatchDataService {
     return forkJoin(requests)
       .pipe(
         map((data) => {
-          return data.map((itm) => itm.matches[0])
+          return data.map((itm) => itm.matches.sort(this.sortAscByDate)[0])
         }),
         map((data) => {
           return data.map((match, idx) => {
             return {
               awayTeam: {
-                crest: match.awayTeam.crest,
+                crest: match.awayTeam.crest || `https://crests.football-data.org/${match.awayTeam.id}.svg`,
                 name: match.awayTeam.name,
                 id: match.awayTeam.id,
               },
               homeTeam: {
-                crest: match.homeTeam.crest,
+                crest: match.homeTeam.crest || `https://crests.football-data.org/${match.homeTeam.id}.svg`,
                 name: match.homeTeam.name,
                 id: match.homeTeam.id,
               },
@@ -115,10 +115,7 @@ export class MatchDataService {
 
           if (data.matches.length === 0) throw Error("Data for a selected team is unavailable")
         }),
-        map((data) => data.matches.sort((a, b) => {
-          if (a.utcDate === b.utcDate) return 0
-          return new Date(a.utcDate) > new Date(b.utcDate) ? 1 : -1
-        })[0]),
+        map((data) => data.matches.sort(this.sortAscByDate)[0]),
         map((match) => {
           return {
             awayTeam: {
@@ -168,22 +165,28 @@ export class MatchDataService {
     localStorage.setItem('matches', JSON.stringify(savedMatches))
   }
 
+  private sortAscByDate(a: NextMatch, b: NextMatch) {
+
+    if (a.utcDate === b.utcDate) return 0
+    return a.utcDate > b.utcDate ? 1 : -1
+  }
+
+  private sortDescByDate(a: NextMatch, b: NextMatch) {
+    if (a.utcDate === b.utcDate) return 0
+    return a.utcDate < b.utcDate ? 1 : -1
+  }
+
   sortMatches(sortOrder: Order) {
 
     const matches = this.getSavedMatchesData()
 
     if (!matches.length) return
 
-    matches.sort((a, b) => {
-
-      if (a.utcDate === b.utcDate) return 0
-
-      if (sortOrder === 'asc') {
-        return new Date(a.utcDate) > new Date(b.utcDate) ? 1 : -1
-      } else {
-        return new Date(a.utcDate) < new Date(b.utcDate) ? 1 : -1
-      }
-    })
+    if (sortOrder === 'asc') {
+      matches.sort(this.sortAscByDate)
+    } else {
+      matches.sort(this.sortDescByDate)
+    }
 
     this.matchDataSubject.next(matches)
     localStorage.setItem('matches', JSON.stringify(matches))
