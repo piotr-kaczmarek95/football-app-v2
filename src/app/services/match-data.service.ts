@@ -30,11 +30,11 @@ export class MatchDataService {
 
     const savedMatchesIds = savedMatches.map(match => match.followedTeamId)
     const requests: Observable<NextMatchFullData>[] = []
-    const currentDate = new Date()
+    const currentDate = new Date().toISOString()
 
     savedMatches.forEach((match: NextMatch) => {
 
-      if (currentDate > new Date(match.utcDate)) {
+      if (currentDate > match.utcDate) {
 
         console.log(`### Team: ${match.followedTeamId}, source: api`)
 
@@ -172,6 +172,7 @@ export class MatchDataService {
   }
 
   private sortDescByDate(a: NextMatch, b: NextMatch) {
+
     if (a.utcDate === b.utcDate) return 0
     return a.utcDate < b.utcDate ? 1 : -1
   }
