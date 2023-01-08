@@ -54,7 +54,6 @@ export class SearchBoxComponent implements OnInit, OnDestroy, AfterViewInit {
   showNoMatchingTeamsAlert = false
   showSearchErrorAlert = false
   searchErrorText = ''
-  sortOrder: Order = 'desc'
 
   checkIfClickedOutside(target: EventTarget) {
 
@@ -103,11 +102,5 @@ export class SearchBoxComponent implements OnInit, OnDestroy, AfterViewInit {
 
   onAlertCloseClicked() {
     this.showSearchErrorAlert = false
-  }
-
-  sortMatches() {
-
-    this.MatchDataService.sortMatches(this.sortOrder)
-    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc'
   }
 }

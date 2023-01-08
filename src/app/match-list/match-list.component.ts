@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs'
 import { NextMatch } from '../next-match.model'
 import { MatchDataService } from '../services/match-data.service'
 import { CdkDragDrop } from '@angular/cdk/drag-drop'
+import { Order } from '../order.model'
 
 @Component({
   selector: 'app-match-list',
@@ -32,9 +33,16 @@ export class MatchListComponent implements OnInit, OnDestroy {
   matchDataSub !: Subscription
   matchData !: NextMatch[]
   itemJustAdded = false
+  sortOrder: Order = 'desc'
 
   moveMatchOnList(event: CdkDragDrop<string[]>) {
 
     this.MatchDataService.setCustomMatchesOrder(event)
+  }
+
+  sortMatches() {
+
+    this.MatchDataService.sortMatches(this.sortOrder)
+    this.sortOrder = this.sortOrder === 'asc' ? 'desc' : 'asc'
   }
 }

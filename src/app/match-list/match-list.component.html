@@ -1,4 +1,9 @@
 <div class="container fade-in" cdkDropList (cdkDropListDropped)="moveMatchOnList($event)">
+  <div class="sorting-options">
+    <div>Sort by:</div>
+    <div (click)="sortMatches()">date <div class="arrow" [ngClass]="{'arrow-up': sortOrder === 'desc', 'arrow-down': sortOrder === 'asc'}"></div>
+    </div>
+  </div>
   <div *ngFor="let match of matchData; let i=index" cdkDrag>
     <app-match-list-item [match]="match" [animatedEntrance]="i === 0 && itemJustAdded"></app-match-list-item>
   </div>

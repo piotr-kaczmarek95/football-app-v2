@@ -19,10 +19,5 @@
       </div>
     </div>
   </div>
-  <div class="sorting-options">
-    <div>Sort by:</div>
-    <div (click)="sortMatches()">date <div class="arrow" [ngClass]="{'arrow-up': sortOrder === 'desc', 'arrow-down': sortOrder === 'asc'}"></div>
-    </div>
-  </div>
   <app-alert *ngIf="showSearchErrorAlert" [message]="searchErrorText" [title]="'Error'" (closeClicked)="onAlertCloseClicked()"></app-alert>
 </div>
